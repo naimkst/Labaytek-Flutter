@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:labaytek/helpers/const.dart';
+import 'package:labaytek/pages/home.dart';
 import 'package:labaytek/pages/login.dart';
 
 class Verificatoin extends StatefulWidget {
@@ -197,7 +198,7 @@ class _VerificatoinState extends State<Verificatoin> {
                          backgroundColor: Colors.transparent,
                          elevation: 0,
                        ))
-                      } : _isVerified ? () => {Navigator.push(context, MaterialPageRoute(builder: (builder)=> Login()))} : () { verify(); },
+                      } : _isVerified ? () => {Navigator.push(context, MaterialPageRoute(builder: (builder)=> HomePage(countryName: "Okay")))} : () { verify(); },
                       color: Colors.orange.shade400,
                       minWidth: MediaQuery.of(context).size.width * 0.8,
                       height: 50,

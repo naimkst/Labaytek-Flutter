@@ -49,8 +49,8 @@ class _StartInfoPageState extends State<StartInfoPage> {
                              child: Image.asset('assets/images/order.png', width: 30),
                            ),
                             SizedBox(width: 10,),
-                           Text("Order online all you need", style: TextStyle(
-                             fontSize: 20
+                           Text("Order online all you needs", style: TextStyle(
+                             fontSize: 17
                            ),),
                          ],
                        ),
@@ -74,8 +74,8 @@ SizedBox(height: 20,),
                               child: Image.asset('assets/images/tracking.png', width: 30),
                             ),
                             SizedBox(width: 10,),
-                            Text("Keep track of orders", style: TextStyle(
-                                fontSize: 20
+                            Text("Keep track of your orders", style: TextStyle(
+                                fontSize: 17
                             ),),
                           ],
                         ),
@@ -100,7 +100,7 @@ SizedBox(height: 20,),
                             ),
                             SizedBox(width: 10,),
                             Text("Chat with us", style: TextStyle(
-                                fontSize: 20
+                                fontSize: 17
                             ),),
                           ],
                         ),
@@ -124,8 +124,8 @@ SizedBox(height: 20,),
                               child: Image.asset('assets/images/heart.png', width: 30),
                             ),
                             SizedBox(width: 10,),
-                            Text("Find a professional to help \ndesign or furnish your home", style: TextStyle(
-                                fontSize: 20
+                            Text("Customize your Furniture to fit \n your Home Space and Design", style: TextStyle(
+                                fontSize: 17
                             ),),
                           ],
                         ),
