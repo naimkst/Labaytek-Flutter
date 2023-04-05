@@ -20,94 +20,86 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(30),
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height,
+        body: Container(
+          padding: EdgeInsets.all(30),
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network('https://ouch-cdn2.icons8.com/n9XQxiCMz0_zpnfg9oldMbtSsG7X6NwZi_kLccbLOKw/rs:fit:392:392/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDMv/MGE2N2YwYzMtMjQw/NC00MTFjLWE2MTct/ZDk5MTNiY2IzNGY0/LnN2Zw.png', fit: BoxFit.cover, width: 280, ),
                 SizedBox(height: 50,),
-                FadeInDown(
-                  child: Text('REGISTER',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.grey.shade900),),
-                ),
-                FadeInDown(
-                  delay: Duration(milliseconds: 200),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
-                    child: Text('Enter your phone number to continu, we will send you OTP to verifiy.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14, color: Colors.grey.shade700),),
-                  ),
+                Text('REGISTER',
+                  style: TextStyle(fontFamily: "HirukoBold", fontSize: 24, color: Constants.secondaryBlack),),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
+                  child: Text('Enter your phone number to continue, we will send you OTP to verify.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 14, color: Constants.secondaryBlack, fontFamily: "HirukoLight"),),
                 ),
                 SizedBox(height: 30,),
-                FadeInDown(
-                  delay: Duration(milliseconds: 400),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.black.withOpacity(0.13)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xffeeeeee),
-                          blurRadius: 10,
-                          offset: Offset(0, 4),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.black.withOpacity(0.13)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xffeeeeee),
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Stack(
+                    children: [
+                      InternationalPhoneNumberInput(
+                        onInputChanged: (PhoneNumber number) {
+                          print(number.phoneNumber);
+                        },
+                        onInputValidated: (bool value) {
+                          print(value);
+                        },
+                        selectorConfig: SelectorConfig(
+                          selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                         ),
-                      ],
-                    ),
-                    child: Stack(
-                      children: [
-                        InternationalPhoneNumberInput(
-                          onInputChanged: (PhoneNumber number) {
-                            print(number.phoneNumber);
-                          },
-                          onInputValidated: (bool value) {
-                            print(value);
-                          },
-                          selectorConfig: SelectorConfig(
-                            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                          ),
-                          ignoreBlank: false,
-                          autoValidateMode: AutovalidateMode.disabled,
-                          selectorTextStyle: TextStyle(color: Colors.black),
-                          textFieldController: controller,
-                          formatInput: false,
-                          maxLength: 9,
-                          keyboardType:
-                          TextInputType.numberWithOptions(signed: true, decimal: true),
-                          cursorColor: Colors.black,
-                          inputDecoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(bottom: 15, left: 0),
-                            border: InputBorder.none,
-                            hintText: 'Phone Number',
-                            hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 16),
-                          ),
-                          onSaved: (PhoneNumber number) {
-                            print('On Saved: $number');
-                          },
+                        ignoreBlank: false,
+                        autoValidateMode: AutovalidateMode.disabled,
+                        selectorTextStyle: TextStyle(color: Colors.black),
+                        textFieldController: controller,
+                        formatInput: false,
+                        maxLength: 9,
+                        keyboardType:
+                        TextInputType.numberWithOptions(signed: true, decimal: true),
+                        cursorColor: Colors.black,
+                        inputDecoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(bottom: 15, left: 0),
+                          border: InputBorder.none,
+                          hintText: 'Phone Number',
+                          hintStyle: TextStyle(color: Constants.secondaryBlack.withOpacity(0.5), fontSize: 16, fontFamily: "Hiruko"),
                         ),
-                        Positioned(
-                          left: 90,
-                          top: 8,
-                          bottom: 8,
-                          child: Container(
-                            height: 40,
-                            width: 1,
-                            color: Colors.black.withOpacity(0.13),
-                          ),
-                        )
-                      ],
-                    ),
+                        onSaved: (PhoneNumber number) {
+                          print('On Saved: $number');
+                        },
+                      ),
+                      Positioned(
+                        left: 90,
+                        top: 8,
+                        bottom: 8,
+                        child: Container(
+                          height: 40,
+                          width: 1,
+                          color: Colors.black.withOpacity(0.13),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 SizedBox(height: 100,),
                 FadeInDown(
-                  delay: Duration(milliseconds: 600),
+                  // delay: Duration(milliseconds: 600),
                   child: MaterialButton(
                     minWidth: double.infinity,
                     onPressed: () {
@@ -136,22 +128,22 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                         strokeWidth: 2,
                       ),
                     ) :
-                    Text("Request OTP", style: TextStyle(color: Colors.white),),
+                    Text("Request OTP", style: TextStyle(color: Colors.white, fontFamily: "HirukoBold"),),
                   ),
                 ),
                 SizedBox(height: 20,),
                 FadeInDown(
-                  delay: Duration(milliseconds: 800),
+                  // delay: Duration(milliseconds: 800),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Already have an account?', style: TextStyle(color: Colors.grey.shade700),),
+                      Text('Already have an account?', style: TextStyle(color: Constants.secondaryGray, fontFamily: "Hiruko"),),
                       SizedBox(width: 5,),
                       InkWell(
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
                         },
-                        child: Text('Login', style: TextStyle(color: Colors.black),),
+                        child: Text('Login', style: TextStyle(color: Constants.secondaryBlack, fontFamily: "Hiruko"),),
                       )
                     ],
                   ),

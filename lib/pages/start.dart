@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:labaytek/helpers/const.dart';
+import 'package:labaytek/helpers/const.dart';
 import 'package:labaytek/pages/start_info.dart';
+
+import '../helpers/const.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -27,7 +30,9 @@ class _StartPageState extends State<StartPage> {
                 ),
                 Text(
                   "IT'S ALL STARTS HERE",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontFamily: "HirukoBold",
+                  color: Constants.secondaryBlack
+                  ),
                 ),
               ],
             ),
@@ -58,7 +63,7 @@ class _StartPageState extends State<StartPage> {
                         "GET STARTED",
                         style: TextStyle(
                             fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                            fontFamily: "HirukoBold",
                             color: Colors.white),
                       )),
                 ),

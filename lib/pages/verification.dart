@@ -75,11 +75,11 @@ class _VerificatoinState extends State<Verificatoin> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              height: MediaQuery.of(context).size.height,
-              width: double.infinity,
+        body: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            height: MediaQuery.of(context).size.height,
+            width: double.infinity,
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,14 +130,14 @@ class _VerificatoinState extends State<Verificatoin> {
                   SizedBox(height: 30,),
                   FadeInDown(
                       duration: Duration(milliseconds: 500),
-                      child: Text("Verification", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),)),
+                      child: Text("Verification", style: TextStyle(fontSize: 30, fontFamily: "HirukoBold"),)),
                   SizedBox(height: 30,),
                   FadeInDown(
                     delay: Duration(milliseconds: 500),
                     duration: Duration(milliseconds: 500),
                     child: Text("Please enter the 4 digit code sent to \n +93 706-399-999",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16, color: Colors.grey.shade500, height: 1.5),),
+                      style: TextStyle(fontSize: 16, color: Color(0xFF36455C), height: 1.5, fontFamily: "HirukoLight"),),
                   ),
                   SizedBox(height: 30,),
 
@@ -213,8 +213,8 @@ class _VerificatoinState extends State<Verificatoin> {
                       ) : _isVerified ? Icon(Icons.check_circle, color: Colors.white, size: 30,) : Text("Verify", style: TextStyle(color: Colors.white),),
                     ),
                   )
-                ],)
-          ),
+                ],),
+            )
         )
     );
   }

@@ -25,9 +25,12 @@ class _HomePageState extends State<HomePage> {
   final CarouselController carouselSlider = CarouselController();
   int sliderIndex = 0;
   int _page = 0;
+
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    int width = MediaQuery.of(context).size.width.toInt();
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey[100],
@@ -36,7 +39,15 @@ class _HomePageState extends State<HomePage> {
           index: 0,
           height: 60.0,
           items: <Widget>[
-            Icon(Icons.home, size: 30, color: Constants.primaryColor),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  "assets/images/home-icon.jpeg",
+                  width: 30,
+                  height: 30,
+                  fit: BoxFit.cover,
+                )),
+            // Icon(Icons.home, size: 30, color: Constants.primaryColor),
             Icon(Icons.widgets_sharp, size: 30, color: Constants.primaryColor),
             Icon(Icons.shopping_cart, size: 30, color: Constants.primaryColor),
             Icon(Icons.heart_broken_sharp,
@@ -83,6 +94,7 @@ class _HomePageState extends State<HomePage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              // Text(width.toString()),
               // Slider
               Container(
                 width: double.infinity,
@@ -96,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                                   item,
                                   fit: BoxFit.fill,
                                   width: double.infinity,
-                                      height: 230,
+                                  height: 230,
                                 )),
                               ))
                           .toList(),
@@ -148,39 +160,6 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    //     Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border.all(color: Colors.grey),
-                    // ),
-                    //       // padding: EdgeInsets.symmetric(horizontal: 15),
-                    //       // margin: EdgeInsets.only(left: 10),
-                    //       child: DropdownButton(
-                    //         onChanged: (value){
-                    //           print("changed");
-                    //         },
-                    //         underline: SizedBox(),
-                    //         borderRadius: BorderRadius.circular(0),
-                    //
-                    //         style: TextStyle(color: Colors.black,),
-                    //         hint: Text("All Category"),
-                    //         elevation: 0,
-                    //         itemHeight: 50,
-                    //         items: [
-                    //           DropdownMenuItem(
-                    //             child: Text("Sofas"),
-                    //             value: 1,
-                    //           ),
-                    //           DropdownMenuItem(
-                    //             child: Text("Chairs"),
-                    //             value: 2,
-                    //           ),
-                    //           DropdownMenuItem(
-                    //             child: Text("Tables"),
-                    //             value: 2,
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
                     Container(
                       width: MediaQuery.of(context).size.width - 20,
                       padding: EdgeInsets.symmetric(horizontal: 15),
@@ -192,37 +171,18 @@ class _HomePageState extends State<HomePage> {
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: "Search products here..",
-                          hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                          hintStyle: TextStyle(
+                              color: Constants.secondaryBlack.withOpacity(0.7),
+                              fontSize: 13,
+                              fontFamily: 'Hiruko'),
                           // border: OutlineInputBorder(
                           //   borderRadius: BorderRadius.circular(50)
                           // ),
                           border: InputBorder.none,
-                          icon: Icon(Icons.search, color: Colors.grey),
+                          icon: Icon(Icons.search, color: Constants.primaryColor),
                         ),
                       ),
                     ),
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //   ),
-                    //   child: Container(
-                    //     width: 100,
-                    //     height: 50,
-                    //     decoration: BoxDecoration(
-                    //       color: Constants.primaryColor,
-                    //       borderRadius: BorderRadius.only(
-                    //         topRight: Radius.circular(0),
-                    //         bottomRight: Radius.circular(0),
-                    //       ),
-                    //     ),
-                    //     child: ElevatedButton(
-                    //       onPressed: () {},
-                    //       style: ElevatedButton.styleFrom(
-                    //        elevation: 0,
-                    //       ),
-                    //       child: Text("SEARCH", style: TextStyle(color:Colors.white, fontWeight: FontWeight.w600)),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -235,19 +195,18 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         margin: EdgeInsets.only(top: 20, left: 10),
                         decoration: BoxDecoration(
-                          color: Constants.primaryColor,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                            color: Constants.primaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
                         child: Row(
                           children: [
                             Text(
-                              "All Categories",
+                              "Categories",
                               style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Hiruko',
                                   color: Colors.white),
                             ),
                             SizedBox(
@@ -255,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Image.asset(
                               "assets/images/category.png",
-                              width: 25,
+                              width: 20,
                               color: Colors.white,
                             )
                           ],
@@ -263,47 +222,18 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                        margin: EdgeInsets.only(top: 20, left: 10),
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        margin: EdgeInsets.only(top: 20, left: 5),
                         decoration: BoxDecoration(
-                          color: Color(0xff335384),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Product Gallery",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Image.asset(
-                              "assets/images/gallery.png",
-                              width: 25,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                        margin: EdgeInsets.only(top: 20, left: 10),
-                        decoration: BoxDecoration(
-                          color: Color(0xff7f2563),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                            color: Color(0xff7f2563),
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
                         child: Row(
                           children: [
                             Text(
                               "Quick Delivery",
                               style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Hiruko',
                                   color: Colors.white),
                             ),
                             SizedBox(
@@ -311,7 +241,34 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Image.asset(
                               "assets/images/delivery.png",
-                              width: 25,
+                              width: 20,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        margin: EdgeInsets.only(top: 20, left: 5, right: 10),
+                        decoration: BoxDecoration(
+                            color: Color(0xff335384),
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Product Gallery",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Hiruko',
+                                  color: Colors.white),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Image.asset(
+                              "assets/images/gallery.png",
+                              width: 20,
                               color: Colors.white,
                             )
                           ],
@@ -322,6 +279,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
+              SizedBox(height: 15),
               // Ready for delivery
               Container(
                 margin: EdgeInsets.only(top: 20),
@@ -335,7 +293,10 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             "Ready for Delivery",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w600),
+                              fontSize: 18,
+                              fontFamily: 'HirukoBold',
+                                color: Constants.secondaryBlack
+                            ),
                           ),
                         ),
                         Container(
@@ -344,7 +305,7 @@ class _HomePageState extends State<HomePage> {
                             "View All",
                             style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                                fontFamily: 'HirukoBold',
                                 color: Constants.primaryColor),
                           ),
                         ),
@@ -353,14 +314,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 10),
                   Container(
+                    constraints: BoxConstraints(
+                      minHeight: 250,
+                      maxHeight: width <= 350 ? 270 : 300,
+                    ),
                     width: MediaQuery.of(context).size.width,
-                    height: 270,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
-                            margin: EdgeInsets.only(top: 10, left: 10, right: 5, bottom: 10),
+                            margin: EdgeInsets.only(
+                                top: 10, left: 10, right: 5, bottom: 10),
                             padding: EdgeInsets.all(15),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -370,8 +335,8 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.grey.withOpacity(0.1),
                                   spreadRadius: 1,
                                   blurRadius: 1,
-                                  offset:
-                                      Offset(0, 1), // changes position of shadow
+                                  offset: Offset(
+                                      0, 1), // changes position of shadow
                                 ),
                               ],
                             ),
@@ -379,6 +344,8 @@ class _HomePageState extends State<HomePage> {
                               width: MediaQuery.of(context).size.width * 0.38,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Image.asset("assets/images/product06.png"),
                                   SizedBox(
@@ -388,7 +355,10 @@ class _HomePageState extends State<HomePage> {
                                     "Amos Chair",
                                     style: TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.w800),
+                                      color: Constants.secondaryBlack,
+                                        fontWeight: FontWeight.w800,
+                                      fontFamily: 'HirukoBold',
+                                    ),
                                     textAlign: TextAlign.left,
                                   ),
                                   SizedBox(
@@ -396,19 +366,25 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Text("A modren ake on traditional",
                                       style: TextStyle(
-                                          color: Colors.black.withOpacity(0.7))),
+                                        fontFamily: 'Hiruko',
+                                          color: Constants.secondaryBlack)),
                                   SizedBox(
                                     height: 12,
                                   ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        "\$ 200",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w800),
+                                      Container(
+                                        margin: EdgeInsets.only(top: 5),
+                                        child: Text(
+                                          "\$ 200",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Constants.secondaryGray,
+                                              fontFamily: 'HirukoBold'),
+                                        ),
                                       ),
                                       Icon(Icons.shopping_bag_outlined,
                                           color: Constants.primaryColor)
@@ -436,7 +412,8 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             "Selected For You",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w600),
+                              color: Constants.secondaryBlack,
+                                fontSize: 18, fontFamily: 'HirukoBold',),
                           ),
                         ),
                         Container(
@@ -445,7 +422,7 @@ class _HomePageState extends State<HomePage> {
                             "View All",
                             style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                                fontFamily: 'HirukoBold',
                                 color: Constants.primaryColor),
                           ),
                         ),
@@ -474,12 +451,11 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.grey.withOpacity(0.1),
                                   spreadRadius: 1,
                                   blurRadius: 1,
-                                  offset:
-                                      Offset(0, 1), // changes position of shadow
+                                  offset: Offset(
+                                      0, 1), // changes position of shadow
                                 ),
                               ],
                             ),
-
                             child: Row(children: [
                               Image.asset(
                                 "assets/images/product06.png",
@@ -490,7 +466,9 @@ class _HomePageState extends State<HomePage> {
                                   "High waist trousers",
                                   maxLines: 2,
                                   style: TextStyle(
-                                      fontSize: 15, fontWeight: FontWeight.w700),
+                                      fontSize: 15,
+                                    color: Constants.secondaryBlack,
+                                    fontFamily: 'HirukoBold',),
                                 ),
                               ),
                             ]),
@@ -500,6 +478,7 @@ class _HomePageState extends State<HomePage> {
                 ]),
               ),
 
+              SizedBox(height: 20),
               // On Sale
               Container(
                 margin: EdgeInsets.only(top: 20),
@@ -513,7 +492,8 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             "On Sale",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w600),
+                              color: Constants.secondaryBlack,
+                                fontSize: 18, fontFamily: 'HirukoBold',),
                           ),
                         ),
                         Container(
@@ -522,7 +502,7 @@ class _HomePageState extends State<HomePage> {
                             "View All",
                             style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                                fontFamily: 'HirukoBold',
                                 color: Constants.primaryColor),
                           ),
                         ),
@@ -532,15 +512,18 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 10),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 270,
+                    constraints: BoxConstraints(
+                      minHeight: 250,
+                      maxHeight: width <= 350 ? 270 : 300,
+                    ),
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
                           return Stack(children: [
                             Container(
-                              margin:
-                                  EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+                              margin: EdgeInsets.only(
+                                  top: 10, left: 10, right: 10, bottom: 10),
                               padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
@@ -559,6 +542,8 @@ class _HomePageState extends State<HomePage> {
                                 width: MediaQuery.of(context).size.width * 0.38,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Image.asset("assets/images/product06.png"),
                                     SizedBox(
@@ -568,7 +553,8 @@ class _HomePageState extends State<HomePage> {
                                       "Amos Chair",
                                       style: TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w800),
+                                        color: Constants.secondaryBlack,
+                                        fontFamily: 'HirukoBold',),
                                       textAlign: TextAlign.left,
                                     ),
                                     SizedBox(
@@ -576,8 +562,8 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Text("A modren ake on traditional",
                                         style: TextStyle(
-                                            color:
-                                                Colors.black.withOpacity(0.7))),
+                                            fontFamily: 'Hiruko',
+                                          color: Constants.secondaryBlack,)),
                                     SizedBox(
                                       height: 12,
                                     ),
@@ -585,11 +571,15 @@ class _HomePageState extends State<HomePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          "\$ 200",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w800),
+                                        Container(
+                                          margin: EdgeInsets.only(top: 5),
+                                          child: Text(
+                                            "\$ 200",
+                                            style: TextStyle(
+                                              color: Constants.secondaryGray,
+                                                fontSize: 18,
+                                              fontFamily: 'HirukoBold',),
+                                          ),
                                         ),
                                         Icon(Icons.shopping_bag_outlined,
                                             color: Constants.primaryColor)
@@ -612,7 +602,7 @@ class _HomePageState extends State<HomePage> {
                                   "50% OFF",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w600),
+                                    fontFamily: 'Hiruko',),
                                 ),
                               ),
                             ),
